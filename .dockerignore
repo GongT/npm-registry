@@ -1,5 +1,6 @@
 storage/
 config/file/
+config/config.yaml
 
 .micro-build
 .git/

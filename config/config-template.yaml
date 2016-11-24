@@ -22,10 +22,10 @@ uplinks:
     url: ${NPM_JS_UPSTREAM_URL}
 
 packages:
-  '@microduino-private/*':
+  '@${NPM_PRIVATE_SCOPE}/*':
     # scoped packages
-    access: microduino
-    publish: microduino
+    access: ${NPM_PRIVATE_USER}
+    publish: ${NPM_PRIVATE_USER}
 
   '*/*':
     # scoped packages
@@ -48,6 +48,6 @@ packages:
 
 # log settings
 logs:
-  - {type: stdout, format: pretty, level: none}
+  - {type: stdout, format: pretty, level: http}
   - {type: stdout, format: pretty, level: warn}
 

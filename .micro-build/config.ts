@@ -28,9 +28,8 @@ build.shellCommand('node');
 build.label('microbuild', 'yes');
 
 build.nsgLabel(ELabelNames.alias, ['npm.registry.' + JsonEnv.baseDomainName]);
-// build.nsgLabel(ELabelNames.proxy, 'nginx');
 
-// build.addPlugin(EPlugins.jenv);
+build.dependService('nginx-service-generator', 'http://github.com/GongT/nginx-microservice-generator.git')
 
 build.volume('./storage', '/data/storage');
 build.volume('./config/htfile', '/data/config/htfile');

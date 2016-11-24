@@ -1,13 +1,13 @@
 {
 	"dependencies": {
-		"json-env-data": "*",
+		"@gongt/jenv-data": "*",
 		"sinopia": "^1.4.0"
 	},
 	"scripts": {
 		"start": "jenv node config/create-config.js && sinopia --config ./config/config.yaml --listen 0.0.0.0:4873"
 	},
 	"private": true,
-	"name": "microduino-registry",
+	"name": "@gongt/npm-registry",
 	"version": "0.0.0",
 	"description": "",
 	"repository": {}
