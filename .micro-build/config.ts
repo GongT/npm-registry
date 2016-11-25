@@ -1,5 +1,4 @@
 import {MicroBuildConfig, ELabelNames} from "./x/microbuild-config";
-import {JsonEnv} from "../.jsonenv/_current_result.json.d.ts";
 declare const build: MicroBuildConfig;
 /*
  +==================================+
@@ -27,14 +26,13 @@ build.shellCommand('node');
 
 build.label('microbuild', 'yes');
 
-build.nsgLabel(ELabelNames.alias, ['npm.registry.' + JsonEnv.baseDomainName]);
+build.specialLabel(ELabelNames.alias, ['npm.registry.' + JsonEnv.baseDomainName]);
 
-build.dependService('nginx-service-generator', 'http://github.com/GongT/nginx-microservice-generator.git')
+build.dependService('microservice-dnsmasq', 'http://github.com/GongT/microservice-dnsmasq.git');
 
 build.volume('./storage', '/data/storage');
 build.volume('./config/htfile', '/data/config/htfile');
 
 build.appendDockerFile('config/create-config.Dockerfile');
 
-JsonEnv.gfw.npmRegistry.user = '';
-JsonEnv.gfw.npmRegistry.url = JsonEnv.gfw.npmRegistry.upstream;
+JsonEnv.gfw.npmRegistry.disableLayer = true;

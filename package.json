@@ -4,7 +4,8 @@
 		"sinopia": "^1.4.0"
 	},
 	"scripts": {
-		"start": "jenv node config/create-config.js && sinopia --config ./config/config.yaml --listen 0.0.0.0:4873"
+		"start": "jenv node config/create-config.js && sinopia --config ./config/config.yaml --listen 0.0.0.0:4873",
+		"do-register": ""
 	},
 	"private": true,
 	"name": "@gongt/npm-registry",
