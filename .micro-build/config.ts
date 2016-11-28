@@ -15,6 +15,7 @@ build.baseImage('node');
 build.projectName(projectName);
 build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 build.install('./package.json');
+build.install('./sinopia/package.json');
 
 build.forwardPort(80, 'tcp').publish(19991);
 
@@ -33,6 +34,7 @@ build.dependService('microservice-dnsmasq', 'http://github.com/GongT/microservic
 build.volume('./storage', '/data/storage');
 build.volume('./config/htfile', '/data/config/htfile');
 
+build.prependDockerFile('install/install-from-git.Dockerfile');
 build.appendDockerFile('config/create-config.Dockerfile');
 
 JsonEnv.gfw.npmRegistry.disableLayer = true;

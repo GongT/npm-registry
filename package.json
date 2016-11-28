@@ -1,7 +1,7 @@
 {
 	"dependencies": {
 		"@gongt/jenv-data": "*",
-		"sinopia": "^1.4.0"
+		"js-yaml": "*"
 	},
 	"scripts": {
 		"start": "jenv node config/create-config.js && sinopia --config ./config/config.yaml --listen 0.0.0.0:4873",

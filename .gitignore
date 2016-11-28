@@ -24,3 +24,5 @@ typings/
 .micro-build/*
 !.micro-build/config.ts
 dist/
+
+sinopia/
