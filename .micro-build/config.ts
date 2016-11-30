@@ -15,11 +15,10 @@ build.baseImage('node');
 build.projectName(projectName);
 build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 build.install('./package.json');
-build.install('./sinopia/package.json');
 
 build.forwardPort(80, 'tcp').publish(19991);
 
-build.startupCommand('./node_modules/.bin/sinopia', '--config', './config/config.yaml', '--listen', '0.0.0.0:80');
+build.startupCommand('./node_modules/.bin/verdaccio', '--config', './config/config.yaml', '--listen', '0.0.0.0:80');
 build.shellCommand('node');
 // build.stopCommand('stop.sh');
 
@@ -27,14 +26,13 @@ build.shellCommand('node');
 
 build.label('microbuild', 'yes');
 
-build.specialLabel(ELabelNames.alias, ['npm.registry.' + JsonEnv.baseDomainName]);
+build.specialLabel(ELabelNames.alias, []);
 
 build.dependService('microservice-dnsmasq', 'http://github.com/GongT/microservice-dnsmasq.git');
 
 build.volume('./storage', '/data/storage');
 build.volume('./config/htfile', '/data/config/htfile');
 
-build.prependDockerFile('install/install-from-git.Dockerfile');
 build.appendDockerFile('config/create-config.Dockerfile');
 
 JsonEnv.gfw.npmRegistry.disableLayer = true;
