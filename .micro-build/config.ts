@@ -14,6 +14,9 @@ const projectName = 'npm-registry';
 build.baseImage('node');
 build.projectName(projectName);
 build.domainName(projectName + '.' + JsonEnv.baseDomainName);
+
+build.isInChina(JsonEnv.gfw.isInChina);
+build.npmInstallSource(JsonEnv.gfw.npmRegistry.upstream);
 build.install('./package.json');
 
 build.forwardPort(80, 'tcp').publish(19991);
@@ -34,5 +37,3 @@ build.volume('./storage', '/data/storage');
 build.volume('./config/htfile', '/data/config/htfile');
 
 build.appendDockerFile('config/create-config.Dockerfile');
-
-JsonEnv.gfw.npmRegistry.disableLayer = true;
