@@ -30,7 +30,7 @@ build.shellCommand('node');
 build.label('microbuild', 'yes');
 
 build.specialLabel(ELabelNames.alias, []);
-build.disablePlugin(EPlugins.jenv);
+build.addPlugin(EPlugins.jenv);
 
 build.dependService('microservice-dnsmasq', 'http://github.com/GongT/microservice-dnsmasq.git');
 
