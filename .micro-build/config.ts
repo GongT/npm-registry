@@ -1,4 +1,4 @@
-import {MicroBuildConfig, ELabelNames} from "./x/microbuild-config";
+import {MicroBuildConfig, ELabelNames, EPlugins} from "./x/microbuild-config";
 declare const build: MicroBuildConfig;
 /*
  +==================================+
@@ -11,13 +11,13 @@ declare const build: MicroBuildConfig;
 
 const projectName = 'npm-registry';
 
-build.baseImage('node');
+build.baseImage('node', 'alpine');
 build.projectName(projectName);
 build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 
 build.isInChina(JsonEnv.gfw.isInChina);
 build.npmInstallSource(JsonEnv.gfw.npmRegistry.upstream);
-build.install('./package.json');
+build.npmInstall('./package.json');
 
 build.forwardPort(80, 'tcp').publish(19991);
 
@@ -30,6 +30,7 @@ build.shellCommand('node');
 build.label('microbuild', 'yes');
 
 build.specialLabel(ELabelNames.alias, []);
+build.disablePlugin(EPlugins.jenv);
 
 build.dependService('microservice-dnsmasq', 'http://github.com/GongT/microservice-dnsmasq.git');
 

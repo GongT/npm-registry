@@ -1,26 +1,20 @@
+### START MICRO-BUILD SECTION >>> 
+# DO NOT EDIT THIS BY HAND
+.*
+node_modules/
+jspm_packages/
+*.log
+npm-debug.log*
+coverage/
+!.micro-build/config.ts
+*.md
+!.micro-build/json-env-data.json
+!.jsonenv/_current_result.json.d.ts
+!.micro-build/npm-install
+!.micro-build/package-json
+!.micro-build/jspm-install
+### <<< END MICRO-BUILD SECTION
+
 storage/
 config/file/
 config/config.yaml
-
-.micro-build
-.git/
-.idea/
-.jsonenv/
-logs/
-*.log
-npm-debug.log*
-pids/
-*.pid
-*.seed
-lib-cov/
-coverage/
-.nyc_output
-.grunt
-.lock-wscript
-build/Release
-node_modules/
-jspm_packages/
-.npm
-.node_repl_history
-!.micro-build/*/
-!.micro-build/json-env-data.json
