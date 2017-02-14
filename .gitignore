@@ -11,6 +11,7 @@ npm-debug.log*
 coverage/
 typings
 !.*ignore
+!.gitinclude
 storage
 config/htfile
 ### <<< END MICRO-BUILD SECTION
