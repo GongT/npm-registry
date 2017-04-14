@@ -7,11 +7,11 @@
 #
 
 # path to a directory with all packages
-storage: ../storage
+storage: ${STORAGE}
 
 auth:
   htpasswd:
-    file: ./htfile/htpasswd
+    file: ${STORAGE}/htpasswd
     # Maximum amount of users allowed to register, defaults to "+inf".
     # You can set this to -1 to disable registration.
     max_users: 1000

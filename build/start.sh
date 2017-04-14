@@ -7,14 +7,16 @@ VERDACCIO=./node_modules/.bin/verdaccio
 
 if [ -z "${RUN_IN_DOCKER}" ]; then
 	cd build
+	export STORAGE=`pwd`/storage
 	node 'create-config.js'
 	VERDACCIO=".${VERDACCIO}"
 fi
 
 "${VERDACCIO}" --config "./npm/config.yaml" --listen '0.0.0.0:8888' &
 
-sleep 2
-if [ "$(jobs | wc)" -eq 0 ]; then
+sleep 3
+
+if ! ps | grep -q verdaccio; then
 	echo "verdaccio can not start" >&2
 	exit 1
 fi

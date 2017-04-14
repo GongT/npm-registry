@@ -28,9 +28,12 @@ build.systemInstall('nginx');
 build.forwardPort(80, 'tcp');
 
 build.shellCommand('sh');
-build.startupCommand('./start.sh');
+build.environmentVariable('STORAGE', '/data/storage', true);
+
 build.onConfig((isBuild) => {
-	if (!isBuild) {
+	if (isBuild) {
+		build.startupCommand('./start.sh');
+	} else {
 		build.startupCommand('./build/start.sh');
 	}
 });
