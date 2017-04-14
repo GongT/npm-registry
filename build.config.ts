@@ -20,8 +20,8 @@ build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 
 build.isInChina(JsonEnv.gfw.isInChina, JsonEnv.gfw);
 build.forceLocalDns();
-// build.npmInstallSource(JsonEnv.gfw.npmRegistry.upstream);
-build.npmCacheLayer(JsonEnv.gfw.npmRegistry);
+build.npmInstallSource(JsonEnv.gfw.npmRegistry.upstream);
+// build.npmCacheLayer(JsonEnv.gfw.npmRegistry);
 build.npmInstall('./package.json');
 build.systemInstall('nginx');
 
