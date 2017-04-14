@@ -13,8 +13,8 @@ typings
 !.*ignore
 !.gitinclude
 storage
-config/htfile
 ### <<< END MICRO-BUILD SECTION
 
 storage
-config/config.yaml
+build/npm/config.yaml
+build/nginx/nginx.conf

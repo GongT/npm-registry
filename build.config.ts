@@ -18,27 +18,31 @@ build.baseImage('node', 'alpine');
 build.projectName(projectName);
 build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 
-build.isInChina(JsonEnv.gfw.isInChina);
+build.isInChina(JsonEnv.gfw.isInChina, JsonEnv.gfw);
 build.forceLocalDns();
-build.npmInstallSource(JsonEnv.gfw.npmRegistry.upstream);
+// build.npmInstallSource(JsonEnv.gfw.npmRegistry.upstream);
+build.npmCacheLayer(JsonEnv.gfw.npmRegistry);
 build.npmInstall('./package.json');
+build.systemInstall('nginx');
 
-build.forwardPort(80, 'tcp').publish(19991);
+build.forwardPort(80, 'tcp');
 
-build.startupCommand('./node_modules/.bin/verdaccio', '--config', './config/config.yaml', '--listen', '0.0.0.0:80');
-build.shellCommand('node');
-// build.stopCommand('stop.sh');
-
-// build.buildArgument('SOME_ARG', defaultValue);
+build.shellCommand('sh');
+build.startupCommand('./start.sh');
+build.onConfig((isBuild) => {
+	if (!isBuild) {
+		build.startupCommand('./build/start.sh');
+	}
+});
 
 build.label('microbuild', 'yes');
 
 build.specialLabel(ELabelNames.alias, []);
 build.addPlugin(EPlugins.jenv);
 
-build.dependService('microservice-dnsmasq', 'http://github.com/GongT/microservice-dnsmasq.git');
-
 build.volume('./storage', '/data/storage');
-build.volume('./config/htfile', '/data/config/htfile');
 
-build.appendDockerFile('config/create-config.Dockerfile');
+build.noDataCopy();
+
+build.prependDockerFileContent('COPY build /data');
+build.appendDockerFileContent('RUN node create-config.js');
