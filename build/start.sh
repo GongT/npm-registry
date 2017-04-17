@@ -7,10 +7,11 @@ VERDACCIO=./node_modules/.bin/verdaccio
 
 if [ -z "${RUN_IN_DOCKER}" ]; then
 	cd build
-	export STORAGE=`pwd`/storage
-	node 'create-config.js'
+	export STORAGE=`pwd`/../storage
 	VERDACCIO=".${VERDACCIO}"
 fi
+
+node 'create-config.js'
 
 "${VERDACCIO}" --config "./npm/config.yaml" --listen '0.0.0.0:8888' &
 

@@ -26,6 +26,7 @@ build.npmInstall('./package.json');
 build.systemInstall('nginx');
 
 build.forwardPort(80, 'tcp');
+build.forwardPort(8888, 'tcp').publish(8888);
 
 build.shellCommand('sh');
 build.environmentVariable('STORAGE', '/data/storage', true);
@@ -48,4 +49,3 @@ build.volume('./storage', '/data/storage');
 build.noDataCopy();
 
 build.prependDockerFileContent('COPY build /data');
-build.appendDockerFileContent('RUN node create-config.js');

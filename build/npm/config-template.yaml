@@ -9,6 +9,10 @@
 # path to a directory with all packages
 storage: ${STORAGE}
 
+url_prefix: ${OUTSIDE_URL}
+listen:
+  - 127.0.0.1:8888
+
 auth:
   htpasswd:
     file: ${STORAGE}/htpasswd

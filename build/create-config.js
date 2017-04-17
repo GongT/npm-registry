@@ -24,4 +24,8 @@ content = content.replace(/\$\{NPM_PRIVATE_USER}/g, JsonEnv.gfw.npmRegistry.user
 content = content.replace(/\$\{NPM_PRIVATE_SCOPE}/g, JsonEnv.gfw.npmRegistry.scope);
 content = content.replace(/\$\{STORAGE}/g, process.env.STORAGE);
 
+const baseUrl = 'http://' + process.env.PROJECT_NAME + '.' + JsonEnv.baseDomainName;
+console.log('OUTSIDE_URL=' + baseUrl);
+content = content.replace(/\$\{OUTSIDE_URL}/g, baseUrl);
+
 fs.writeFileSync(target, content, 'utf-8');
