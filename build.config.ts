@@ -23,7 +23,7 @@ build.forceLocalDns();
 build.npmInstallSource(JsonEnv.gfw.npmRegistry.upstream);
 // build.npmCacheLayer(JsonEnv.gfw.npmRegistry);
 build.npmInstall('./package.json');
-build.systemInstall('nginx');
+build.systemInstall('nginx', 'curl');
 
 build.forwardPort(80, 'tcp');
 build.forwardPort(8888, 'tcp').publish(8888);

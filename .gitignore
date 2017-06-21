@@ -10,6 +10,7 @@ jspm_packages
 npm-debug.log*
 coverage/
 typings
+screen.*
 !.*ignore
 !.gitinclude
 storage
@@ -18,3 +19,4 @@ storage
 storage
 build/npm/config.yaml
 build/nginx/nginx.conf
+private_name.txt

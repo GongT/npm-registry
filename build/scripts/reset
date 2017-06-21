@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -e
+
+if [ -z "${RUN_IN_DOCKER}" ]; then
+	echo "not running in docker"
+	exit 1
+fi
+if [ ! -e "private_name.txt" ]; then
+	echo "private_name.txt is missing."
+	exit 1
+fi
+if [ ! -d "storage" ]; then
+	echo "storage folder is missing."
+	exit 1
+fi
+
+NPM_PRIVATE_SCOPE=$(cat private_name.txt)
+
+echo "removing 'storage' folder without remove @${NPM_PRIVATE_SCOPE}"
+
+cd storage
+find . -maxdepth 1 -type d \
+	! -name "@${NPM_PRIVATE_SCOPE}" \
+	! -name . | xargs rm -rf

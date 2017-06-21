@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ -z "${RUN_IN_DOCKER}" ]; then
+	cd build
+fi
+
+echo "remove npm package.json cache:"
+rm -rf /tmp/npm-registry-package-cache
+mkdir -p /tmp/npm-registry-package-cache
+
+exec /usr/sbin/nginx -c `pwd`/nginx/nginx.conf -s reload
+

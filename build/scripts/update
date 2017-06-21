@@ -1,0 +1,7 @@
+#!/bin/sh
+
+PORT=35858
+if [ -n "${RUN_IN_DOCKER}" ]; then
+	PORT=80
+fi
+curl http://127.0.0.1:${PORT}/${1}?update=1 -v -o /dev/null

@@ -8,8 +8,10 @@ const url = JsonEnv.gfw.npmRegistry.upstream;
 content = fs.readFileSync(__dirname + '/nginx/nginx.template.conf', 'utf-8');
 
 content = content.replace(/\$\{NPM_PRIVATE_SCOPE}/g, JsonEnv.gfw.npmRegistry.scope);
+content = content.replace(/\$\{LISTEN_PORT}/g, process.env.RUN_IN_DOCKER? '80' : '35858');
 
 fs.writeFileSync(__dirname + '/nginx/nginx.conf', content, 'utf-8');
+fs.writeFileSync(__dirname + '/private_name.txt', JsonEnv.gfw.npmRegistry.scope, 'utf-8');
 
 // function escapeRegExp(str) {
 // 	return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
