@@ -2,7 +2,7 @@
 	"dependencies": {
 		"@gongt/jenv-data": "^1.2.7",
 		"debug": "^2.6.8",
-		"verdaccio": "^2.3.1"
+		"verdaccio": "^2.3.4"
 	},
 	"scripts": {
 		"start": "jenv node config/create-config.js && verdaccio --config ./config/config.yaml --listen 0.0.0.0:4873",

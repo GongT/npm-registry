@@ -14,10 +14,10 @@ screen.*
 package-lock.json
 !.*ignore
 !.gitinclude
+!.babelrc
 storage
 ### <<< END MICRO-BUILD SECTION
 
-storage
 build/npm/config.yaml
 build/nginx/nginx.conf
 private_name.txt

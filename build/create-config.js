@@ -2,7 +2,7 @@ require('@gongt/jenv-data/global');
 
 let content;
 const fs = require('fs');
-const url = JsonEnv.gfw.npmRegistry.upstream;
+const url = 'http://registry.npmjs.org'; //JsonEnv.gfw.npmRegistry.upstream;
 
 // nginx
 content = fs.readFileSync(__dirname + '/nginx/nginx.template.conf', 'utf-8');

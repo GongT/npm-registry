@@ -30,6 +30,9 @@ mkdir -p /tmp/npm-registry-package-cache
 
 chmod a+x /data/scripts/* || true
 
+
+
+
 PORT=35858
 if [ -n "${RUN_IN_DOCKER}" ]; then
 	PORT=80

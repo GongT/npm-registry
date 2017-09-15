@@ -23,10 +23,10 @@ build.config.ts
 !.micro-build/docker/npm-install
 !.micro-build/docker/package-json
 !.micro-build/docker/plugins
+!.babelrc
 storage
 ### <<< END MICRO-BUILD SECTION
 
-storage
 build/npm/config.yaml
 build/nginx/nginx.conf
 private_name.txt
