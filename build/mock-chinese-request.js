@@ -30,6 +30,9 @@ function attachProxy() {
 	// wait node core patch: require('http').globalAgent = httpAgent;
 	
 	console.log('    http & https (proxy) agent = ', JsonEnv.gfw.proxy);
+	
+	process.env.HTTP_PROXY = JsonEnv.gfw.proxy;
+	process.env.HTTPS_PROXY = JsonEnv.gfw.proxy;
 }
 
 // run normal main file (ts-app-loader)
