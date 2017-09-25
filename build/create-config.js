@@ -2,7 +2,7 @@ require('@gongt/jenv-data/global');
 
 let content;
 const fs = require('fs');
-const url = JsonEnv.gfw.npmRegistry.upstream;
+const url = 'http://registry.npmjs.org';
 
 // nginx
 const NGX_PORT = process.env.RUN_IN_DOCKER? '80' : '35858';
