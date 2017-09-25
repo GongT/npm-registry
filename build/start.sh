@@ -2,20 +2,19 @@
 
 set -e
 
-VERDACCIO=./node_modules/.bin/verdaccio
-
-if [ -z "${RUN_IN_DOCKER}" ]; then
+if [ -z "${RUN_IN_DOCKER}" ]; then # not run in docker, everything is in "build" folder.
 	cd build
 	export STORAGE=`pwd`/../storage
-	VERDACCIO=".${VERDACCIO}"
 fi
+
+export RANDOM_PORT=$(node -e "console.log(Math.ceil(Math.random() * 55535)+10000)")
 
 echo "create config files" >&2
 node 'create-config.js'
 NPM_PRIVATE_SCOPE=$(cat private_name.txt)
 
-echo "run verdaccio on port 8888 at background" >&2
-"${VERDACCIO}" --config "./npm/config.yaml" --listen '0.0.0.0:8888' &
+echo "run verdaccio on port ${RANDOM_PORT} at background" >&2
+node mock-chinese-request.js --config "./npm/config.yaml" &
 
 sleep 4
 

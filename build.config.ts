@@ -27,7 +27,6 @@ build.npmInstall('./package.json');
 build.systemInstall('nginx', 'curl');
 
 build.forwardPort(80, 'tcp');
-build.forwardPort(8888, 'tcp').publish(8888);
 
 build.shellCommand('sh');
 build.environmentVariable('STORAGE', '/data/storage', true);
