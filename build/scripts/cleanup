@@ -1,0 +1,17 @@
+#!/bin/sh
+
+run () {
+	find storage -type d \
+		! -name "@${NPM_PRIVATE_SCOPE}" \
+		! -name . | while read fname
+	do
+		(
+			cd "$fname"
+			ls | grep -v package.json | head -n -1 | xargs rm -vf
+		)
+	done
+}
+
+echo "remove old package from disk cache:"
+COUNT=$(run | wc -l)
+echo "removed ${COUNT} files"
