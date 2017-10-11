@@ -1,12 +1,14 @@
 #!/bin/sh
 
-echo "remove npm package.json cache from verdaccio:"
-COUNT=$(
-	find storage -name package.json \
-		! -path "./@${NPM_PRIVATE_SCOPE}/*" \
-		| xargs rm -vf | wc -l
-)
-echo "removed ${COUNT} files"
+if echo "$*" | grep -q -- "-f" ; then
+	echo "remove npm package.json cache from verdaccio:"
+	COUNT=$(
+		find storage -name package.json \
+			! -path "./@${NPM_PRIVATE_SCOPE}/*" \
+			| xargs rm -vf | wc -l
+	)
+	echo "removed ${COUNT} files"
+fi
 
 if [ -z "${RUN_IN_DOCKER}" ]; then
 	cd build
@@ -19,6 +21,12 @@ COUNT=$(
 mkdir -p /tmp/npm-registry-package-cache
 echo "removed ${COUNT} files"
 
+echo "reload nginx:"
 exec /usr/sbin/nginx -c `pwd`/nginx/nginx.conf -s reload
-
+if [ $? -eq 0 ]; then
+	echo "ok."
+else
+	echo "failed"
+	exit 1
+fi
 
